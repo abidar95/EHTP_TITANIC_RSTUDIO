@@ -229,6 +229,7 @@ La fonction de prédiction
 
 ```R
 prob_prediction <- function(data, gender, pClass, age) {
+    
     fAge = "(0,20]"
     if(age > 20 && age <= 40 ) {
         fAge = "(20,40]"
@@ -237,12 +238,22 @@ prob_prediction <- function(data, gender, pClass, age) {
     } else if(age > 60 && age <= 80 ) {
         fAge = "(60,80]"
     }
+    
     s_sx = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"1"]
     s_pc = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"1"]
     s_ca = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"1"]
     s = prop.table(table(data$Survived))["1"]
-    print(s_ca)
-}
+    
+    
+    s_sx_0 = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"0"]
+    s_pc_0 = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"0"]
+    s_ca_0 = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"0"]
+    s_0 = prop.table(table(data$Survived))["0"]
+    return (s_sx*s_pc*s_ca*s)/((s_sx*s_pc*s_ca*s)+(s_sx_0*s_pc_0*s_ca_0*s_0))
 
-prob_prediction(train, "male", 3, 11)
+}
+```
+
+```R
+print(prob_prediction(train, "male", 2, 45)) #resultat: 0.012
 ```
