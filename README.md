@@ -170,6 +170,12 @@ En utilisant les statistiques descriptives et/ou les graphiques les plus appropr
 
     ![image](cage_survived.png)
 
+
+Q.6
+---
+
+On faisant une comparaison entre le sexe et les survivants, nous constatons que des 221 survivants 152 est le nombre des femmes qui ont survécu au drame, ce qui nous laisse dire que ces dernières étaient prioritaire à monter sur le canaux de sauvetage que les hommes, la catégorie de classe avait aussi un impact sur la survie, nous distinguons que le nombre de survivants se  constate plus au niveau de la classe 1 avec 52% de survivants des différents sexe que de décédant, contre 28% de survivants dans la classe 3, et bien cela, parce que les premières zones touchés par l’iceberg était les niveaux inférieures du navire et qui par la même occasion servait pour loger les passagers de la classe 3 surtout que pour ne pas faire couler le navire, ils devait fermé les portes qui donne au niveau inférieur du navire de ce fait que la majorité des survivants étaient de l’intervalle entre 20 et 40.
+
 Prédiction de la survie
 ---
 
