@@ -122,17 +122,17 @@ sort(colSums(is.na(train)), decreasing = TRUE)[1:3]
 
 #Q.7 La probabilité de suvie par:
     # Gender: (Female=0.76) (Male=0.17)
-    prop.table(table(train$Sex,train$Survived), margin = 1)[,2]
+    prop.table(table(train$Sex,train$Survived), margin = 2)[,2]
     # Class: (1=0.65) (2=0.45) (2=0.22) 
-    prop.table(table(train$Pclass,train$Survived), margin = 1)[,2]
+    prop.table(table(train$Pclass,train$Survived), margin = 2)[,2]
     # Age: ((0,20]=0.45) ((20,40]=0.37) ((40,60]=0.40) ((60,80]=0.09)
-    prop.table(table(cAge,train$Survived), margin = 1)[,2]
+    prop.table(table(cAge,train$Survived), margin = 2)[,2]
 
 #Q.8 Construire les table de probabilité
     # La probabilité de suvie par Gender:
-    prop.table(table(train$Sex,train$Survived), margin = 1)
+    prop.table(table(train$Sex,train$Survived), margin = 2)
     # La probabilité de suvie par Age:
-    prop.table(table(cAge,train$Survived), margin = 1)
+    prop.table(table(cAge,train$Survived), margin = 2)
     # La probabilité de suvie:
     prop.table(table(train$Survived))
 
@@ -151,20 +151,23 @@ prob_prediction <- function(data, gender, pClass, age) {
         fAge = "(60,80]"
     }
     
-    s_sx = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"1"]
-    s_pc = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"1"]
-    s_ca = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"1"]
+    s_sx = prop.table(table(data$Sex,data$Survived), margin = 2)[gender,"1"]
+    s_pc = prop.table(table(data$Pclass,data$Survived), margin = 2)[pClass,"1"]
+    s_ca = prop.table(table(data$cAge,data$Survived), margin = 2)[fAge,"1"]
     s = prop.table(table(data$Survived))["1"]
     
     
-    s_sx_0 = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"0"]
-    s_pc_0 = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"0"]
-    s_ca_0 = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"0"]
+    s_sx_0 = prop.table(table(data$Sex,data$Survived), margin = 2)[gender,"0"]
+    s_pc_0 = prop.table(table(data$Pclass,data$Survived), margin = 2)[pClass,"0"]
+    s_ca_0 = prop.table(table(data$cAge,data$Survived), margin = 2)[fAge,"0"]
     s_0 = prop.table(table(data$Survived))["0"]
     
-    return (s_sx*s_pc*s_ca*s)/((s_sx*s_pc*s_ca*s)+(s_sx_0*s_pc_0*s_ca_0*s_0))
+    v1 = s_sx*s_pc*s_ca*s
+    v2 = s_sx_0*s_pc_0*s_ca_0*s_0
+    
+    return(v1/(v1+v2))
 
 }
 
-print(prob_prediction(train, "male", 2, 45)) #resultat: 0.012
+print(prob_prediction(train, "male", 2, 45)) #resultat: 0.24
 

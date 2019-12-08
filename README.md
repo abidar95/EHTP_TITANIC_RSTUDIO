@@ -251,11 +251,15 @@ prob_prediction <- function(data, gender, pClass, age) {
     s = prop.table(table(data$Survived))["1"]
     
     
-    s_sx_0 = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"0"]
-    s_pc_0 = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"0"]
-    s_ca_0 = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"0"]
+    s_sx_0 = prop.table(table(data$Sex,data$Survived), margin = 2)[gender,"0"]
+    s_pc_0 = prop.table(table(data$Pclass,data$Survived), margin = 2)[pClass,"0"]
+    s_ca_0 = prop.table(table(data$cAge,data$Survived), margin = 2)[fAge,"0"]
     s_0 = prop.table(table(data$Survived))["0"]
-    return (s_sx*s_pc*s_ca*s)/((s_sx*s_pc*s_ca*s)+(s_sx_0*s_pc_0*s_ca_0*s_0))
+    
+    v1 = s_sx*s_pc*s_ca*s
+    v2 = s_sx_0*s_pc_0*s_ca_0*s_0
+    
+    return(v1/(v1+v2))
 
 }
 ```
