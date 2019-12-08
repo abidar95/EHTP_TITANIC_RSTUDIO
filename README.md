@@ -245,9 +245,9 @@ prob_prediction <- function(data, gender, pClass, age) {
         fAge = "(60,80]"
     }
     
-    s_sx = prop.table(table(data$Sex,data$Survived), margin = 1)[gender,"1"]
-    s_pc = prop.table(table(data$Pclass,data$Survived), margin = 1)[pClass,"1"]
-    s_ca = prop.table(table(data$cAge,data$Survived), margin = 1)[fAge,"1"]
+    s_sx = prop.table(table(data$Sex,data$Survived), margin = 2)[gender,"1"]
+    s_pc = prop.table(table(data$Pclass,data$Survived), margin = 2)[pClass,"1"]
+    s_ca = prop.table(table(data$cAge,data$Survived), margin = 2)[fAge,"1"]
     s = prop.table(table(data$Survived))["1"]
     
     

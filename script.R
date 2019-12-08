@@ -122,11 +122,11 @@ sort(colSums(is.na(train)), decreasing = TRUE)[1:3]
 
 #Q.7 La probabilité de suvie par:
     # Gender: (Female=0.76) (Male=0.17)
-    prop.table(table(train$Sex,train$Survived), margin = 2)[,2]
+    prop.table(table(train$Sex,train$Survived), margin = 1)[,2]
     # Class: (1=0.65) (2=0.45) (2=0.22) 
-    prop.table(table(train$Pclass,train$Survived), margin = 2)[,2]
+    prop.table(table(train$Pclass,train$Survived), margin = 1)[,2]
     # Age: ((0,20]=0.45) ((20,40]=0.37) ((40,60]=0.40) ((60,80]=0.09)
-    prop.table(table(cAge,train$Survived), margin = 2)[,2]
+    prop.table(table(cAge,train$Survived), margin = 1)[,2]
 
 #Q.8 Construire les table de probabilité
     # La probabilité de suvie par Gender:
